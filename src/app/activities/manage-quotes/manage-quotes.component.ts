@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+
+/** * Import the root state in order to select parts of it. */ 
+import * as fromRoot from './../../states/index';
+import * as quote from './../../states/quote/quote.actions';
+import { AppState } from './../../states/index';
 
 @Component({
   selector: 'manage-quotes',
@@ -7,9 +14,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageQuotesComponent implements OnInit {
 
-  constructor() { }
+  quoteState$ : Observable<any>;
+
+
+  constructor(private store: Store<any>) {
+
+  }
 
   ngOnInit() {
+    this.store.dispatch(new quote.GetQuoteOfTheDayComplete("a"));
+
+    this.quoteState$ = this.store.select('quoteReducer');
   }
 
 }

@@ -1,9 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { StoreModule } from '@ngrx/store';
 
 import { ManageQuotesModule } from './activities/manage-quotes/manage-quotes.module';
 import { AppComponent } from './app.component';
+import {metaReducer} from "./states/index";
+import {reducer as quoteReducer} from "./states/quote/quote.reducer";
 
 @NgModule({
   declarations: [
@@ -12,7 +15,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
-    ManageQuotesModule
+    ManageQuotesModule,
+    StoreModule.forRoot({metaReducer,quoteReducer} )
   ],
   providers: [],
   bootstrap: [AppComponent],
