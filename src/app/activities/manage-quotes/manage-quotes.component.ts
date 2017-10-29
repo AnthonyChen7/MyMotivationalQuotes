@@ -14,7 +14,7 @@ import { AppState } from './../../states/index';
 })
 export class ManageQuotesComponent implements OnInit {
 
-  quoteState$ : Observable<any>;
+  quoteOfTheDay$ : Observable<any>;
 
 
   constructor(private store: Store<any>) {
@@ -22,9 +22,10 @@ export class ManageQuotesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new quote.GetQuoteOfTheDayComplete("a"));
+    this.store.dispatch(new quote.GetQuoteOfTheDayComplete(Math.random().toString()));
 
-    this.quoteState$ = this.store.select('quoteReducer');
+    this.quoteOfTheDay$ = this.store.select(fromRoot.getQuoteOfTheDay);
+    // this.quoteState$ = this.store.select('quoteReducer');
   }
 
 }

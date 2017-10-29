@@ -5,8 +5,8 @@ import { StoreModule } from '@ngrx/store';
 
 import { ManageQuotesModule } from './activities/manage-quotes/manage-quotes.module';
 import { AppComponent } from './app.component';
-import {metaReducer} from "./states/index";
-import {reducer as quoteReducer} from "./states/quote/quote.reducer";
+import {metaReducer, reducers} from "./states/index";
+// import {reducer as quoteReducer} from "./states/quote/quote.reducer";
 
 @NgModule({
   declarations: [
@@ -16,7 +16,8 @@ import {reducer as quoteReducer} from "./states/quote/quote.reducer";
     BrowserModule,
     NgbModule.forRoot(),
     ManageQuotesModule,
-    StoreModule.forRoot({metaReducer,quoteReducer} )
+    // StoreModule.forRoot({metaReducer} )
+    StoreModule.forRoot(reducers,{} )
   ],
   providers: [],
   bootstrap: [AppComponent],

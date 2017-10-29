@@ -3,7 +3,7 @@ import {storeLogger} from "ngrx-store-logger";
 
 import * as quoteReducer from "./quote/quote.reducer"; 
 import {compose} from "@ngrx/core"; 
-import {combineReducers} from "@ngrx/store";
+import {combineReducers, createFeatureSelector} from "@ngrx/store";
 
 export interface AppState{
     quote: quoteReducer.State
@@ -17,7 +17,7 @@ const developmentReducer:Function = compose(storeLogger(), combineReducers)(redu
 
 export function metaReducer(state: any, action: any) { 
     return developmentReducer(state, action); 
-}  
+}
 
 export const getQuoteState = (state: AppState) => state.quote;
-export const getQuoteOfTheDay = createSelector(getQuoteState, quoteReducer.getQuoteOfTheDay);
+export const getQuoteOfTheDay = createSelector(getQuoteState, (state : quoteReducer.State) => state.quoteOfTheDay);
