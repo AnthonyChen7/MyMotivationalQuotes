@@ -2,6 +2,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.6.
 
+https://github.com/NetanelBasal/ngrx-generator
+https://www.pluralsight.com/guides/front-end-javascript/ui-state-management-with-redux-in-angular-4#sidebar-s-
+https://blog.nextzy.me/state-management-in-angular-with-ngrx-da57e59c7c89
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
