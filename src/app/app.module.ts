@@ -6,7 +6,6 @@ import { StoreModule } from '@ngrx/store';
 import { ManageQuotesModule } from './activities/manage-quotes/manage-quotes.module';
 import { AppComponent } from './app.component';
 import {metaReducer, reducers} from "./states/index";
-// import {reducer as quoteReducer} from "./states/quote/quote.reducer";
 
 @NgModule({
   declarations: [

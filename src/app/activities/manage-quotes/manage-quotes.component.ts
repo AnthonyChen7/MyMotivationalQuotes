@@ -16,16 +16,15 @@ export class ManageQuotesComponent implements OnInit {
 
   quoteOfTheDay$ : Observable<any>;
 
-
-  constructor(private store: Store<any>) {
-
-  }
+  constructor(private store: Store<any>) {}
 
   ngOnInit() {
     this.store.dispatch(new quote.GetQuoteOfTheDayComplete(Math.random().toString()));
-
     this.quoteOfTheDay$ = this.store.select(fromRoot.getQuoteOfTheDay);
-    // this.quoteState$ = this.store.select('quoteReducer');
+  }
+
+  temp(){
+    this.store.dispatch(new quote.GetQuoteOfTheDayComplete(Math.random().toString()));
   }
 
 }

@@ -1,9 +1,11 @@
 import { createSelector } from 'reselect';
 import {storeLogger} from "ngrx-store-logger";
+import { environment } from '../../environments/environment';
+import {compose} from "@ngrx/core"; 
+import {combineReducers, createFeatureSelector, ActionReducer} from "@ngrx/store";
 
 import * as quoteReducer from "./quote/quote.reducer"; 
-import {compose} from "@ngrx/core"; 
-import {combineReducers, createFeatureSelector} from "@ngrx/store";
+
 
 export interface AppState{
     quote: quoteReducer.State
