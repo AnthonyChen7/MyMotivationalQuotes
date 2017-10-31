@@ -22,14 +22,14 @@ export class ManageQuotesComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new quote.GetQuoteOfTheDayComplete(Math.random().toString()));
-    this.store.dispatch(new temp.Temp("a"));
+    this.store.dispatch(new temp.GetQuoteOfTheDayComplete(Math.random().toString()));
     this.quoteOfTheDay$ = this.store.select(fromRoot.getQuoteOfTheDay);
     this.tempOfTheDay$ = this.store.select(fromRoot.getQuoteOfTheDayTemp);
   }
 
   temp(){
     this.store.dispatch(new quote.GetQuoteOfTheDayComplete(Math.random().toString()));
-    this.store.dispatch(new temp.Temp("b"));
+    this.store.dispatch(new temp.GetQuoteOfTheDayComplete(Math.random().toString()));
   }
 
 }

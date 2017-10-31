@@ -28,4 +28,4 @@ export const getQuoteState = (state: AppState) => state.quote;
 export const getQuoteOfTheDay = createSelector(getQuoteState, (state : quoteReducer.State) => state.quoteOfTheDay);
 
 export const getTempState = (state: AppState) => state.temp;
-export const getQuoteOfTheDayTemp = createSelector(getTempState, (state : tempReducer.State) => state.temp);
+export const getQuoteOfTheDayTemp = createSelector(getTempState, (state : tempReducer.State) => state.quoteOfTheDay);

@@ -1,8 +1,10 @@
 import { CustomAction } from "../custom-action";
 
+const QUOTE : string = "[QUOTE]";
+
 export const QuoteActionTypes = {
-    GET_QUOTE_OF_THE_DAY : "Get quote of the day",
-    GET_QUOTE_OF_THE_DAY_COMPLETE: "Get quote of the day complete"
+    GET_QUOTE_OF_THE_DAY : QUOTE+"Get quote of the day",
+    GET_QUOTE_OF_THE_DAY_COMPLETE: QUOTE+"Get quote of the day complete"
 };
 
 export class GetQuoteOfTheDay implements CustomAction{
