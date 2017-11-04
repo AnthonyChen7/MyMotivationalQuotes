@@ -6,6 +6,7 @@ import {combineReducers, createFeatureSelector, ActionReducer} from "@ngrx/store
 
 import * as quoteReducer from "./quote/quote.reducer"; 
 import * as tempReducer from "./temp/temp.reducer"; 
+import { CustomAction } from './custom-action';
 
 
 export interface AppState{
@@ -20,7 +21,7 @@ export const reducers = {
 
 const developmentReducer:Function = compose(storeLogger(), combineReducers)(reducers);
 
-export function metaReducer(state: any, action: any) { 
+export function metaReducer(state: AppState, action: CustomAction) { 
     return developmentReducer(state, action); 
 }
 
