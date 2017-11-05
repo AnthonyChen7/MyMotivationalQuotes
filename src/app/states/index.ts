@@ -1,8 +1,4 @@
 import { createSelector } from 'reselect';
-import {storeLogger} from "ngrx-store-logger";
-import { environment } from '../../environments/environment';
-import {compose} from "@ngrx/core"; 
-import {combineReducers, createFeatureSelector, ActionReducer} from "@ngrx/store";
 
 import * as quoteReducer from "./quote/quote.reducer"; 
 import { CustomAction } from './custom-action';
@@ -14,12 +10,6 @@ export interface AppState{
 
 export const reducers = {
     quote: quoteReducer.reducer,
-}
-
-const developmentReducer:Function = compose(storeLogger(), combineReducers)(reducers);
-
-export function metaReducer(state: AppState, action: CustomAction) { 
-    return developmentReducer(state, action); 
 }
 
 export const getQuoteState = (state: AppState) => state.quote;
