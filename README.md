@@ -6,6 +6,7 @@ https://github.com/NetanelBasal/ngrx-generator
 https://www.pluralsight.com/guides/front-end-javascript/ui-state-management-with-redux-in-angular-4#sidebar-s-
 https://blog.nextzy.me/state-management-in-angular-with-ngrx-da57e59c7c89
 https://github.com/ngrx/platform/blob/master/docs/store/api.md#initial-state-and-ahead-of-time-aot-compilation
+https://netbasal.com/implementing-a-meta-reducer-in-ngrx-store-4379d7e1020a
 
 ## Development server
 
