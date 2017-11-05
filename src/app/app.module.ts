@@ -5,15 +5,7 @@ import { StoreModule, compose, combineReducers, ActionReducer, MetaReducer } fro
 import { storeLogger } from 'ngrx-store-logger';
 import { ManageQuotesModule } from './activities/manage-quotes/manage-quotes.module';
 import { AppComponent } from './app.component';
-import {reducers} from "./states/index";
-
-
-// Log all actions
-export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
-  return storeLogger({collapsed: true, duration: false, timestamp: false})(reducer);
-}
-
-export const metaReducers: MetaReducer<any>[] = [debug];
+import {reducers, metaReducers} from "./states/index";
 
 @NgModule({
   declarations: [
