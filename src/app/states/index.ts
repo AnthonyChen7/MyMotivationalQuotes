@@ -1,7 +1,7 @@
 import { ActionReducer, MetaReducer } from '@ngrx/store';
 import { createSelector } from 'reselect';
 import { storeLogger } from 'ngrx-store-logger';
-import * as quoteReducer from "./quote/quote.reducer"; 
+import * as quoteReducer from "./quote/quote.reducers"; 
 import { CustomAction } from './custom-action';
 
 export interface AppState{
