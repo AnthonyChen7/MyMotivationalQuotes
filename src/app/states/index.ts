@@ -14,7 +14,7 @@ export const reducers = {
 
 // Log all actions
 export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
-    return storeLogger({collapsed: true, duration: false, timestamp: false})(reducer);
+    return storeLogger({collapsed: true, duration: false, timestamp: true})(reducer);
   }
   
 export const metaReducers: MetaReducer<any>[] = [debug];
