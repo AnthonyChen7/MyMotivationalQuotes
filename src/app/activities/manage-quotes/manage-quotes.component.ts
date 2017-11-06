@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 /** * Import the root state in order to select parts of it. */ 
 import * as fromRoot from './../../states/index';
@@ -26,7 +26,7 @@ export class ManageQuotesComponent implements OnInit {
   }
 
   temp(){
-    this.store.dispatch(new quote.GetQuoteOfTheDayComplete(Math.random().toString()));
+    this.store.dispatch(new quote.GetQuoteOfTheDay());
   }
 
 }
