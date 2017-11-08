@@ -2,12 +2,15 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.6.
 
-https://github.com/NetanelBasal/ngrx-generator
-https://www.pluralsight.com/guides/front-end-javascript/ui-state-management-with-redux-in-angular-4#sidebar-s-
-https://blog.nextzy.me/state-management-in-angular-with-ngrx-da57e59c7c89
-https://github.com/ngrx/platform/blob/master/docs/store/api.md#initial-state-and-ahead-of-time-aot-compilation
-https://netbasal.com/implementing-a-meta-reducer-in-ngrx-store-4379d7e1020a
-https://hashnode.com/post/managing-state-in-angular-apps-with-ngrxstore-and-ngrxeffects-part-1-cizoey8jh000k9753p58yqj4w
+https://github.com/NetanelBasal/ngrx-generator --
+https://www.pluralsight.com/guides/front-end-javascript/ui-state-management-with-redux-in-angular-4#sidebar-s- --
+https://blog.nextzy.me/state-management-in-angular-with-ngrx-da57e59c7c89 --
+https://github.com/ngrx/platform/blob/master/docs/store/api.md#initial-state-and-ahead-of-time-aot-compilation --
+https://netbasal.com/implementing-a-meta-reducer-in-ngrx-store-4379d7e1020a --
+https://hashnode.com/post/managing-state-in-angular-apps-with-ngrxstore-and-ngrxeffects-part-1-cizoey8jh000k9753p58yqj4w --
+https://medium.com/front-end-hacking/an-intro-to-ngrx-effects-ngrx-store-with-angular-4-c55c4d1d5baf --
+https://github.com/ngrx/effects/blob/master/docs/intro.md --
+https://stackoverflow.com/questions/41796291/how-to-use-other-angular2-service-inside-an-ngrx-store-reducer --
 
 ## Development server
 
