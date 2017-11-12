@@ -20,7 +20,6 @@ export class ManageQuotesComponent implements OnInit {
   constructor(private store: Store<any>) {}
 
   ngOnInit() {
-    // this.store.dispatch(new quote.GetQuoteOfTheDayComplete(Math.random().toString()));
     this.store.dispatch(new quote.GetQuoteOfTheDay());
     this.quoteOfTheDay$ = this.store.select(fromRoot.getQuoteOfTheDay);
   }
