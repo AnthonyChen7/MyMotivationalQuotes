@@ -15,7 +15,6 @@ export function reducer(state = initialState, action: CustomAction) : State{
 
         case quote.QuoteActionTypes.GET_QUOTE_OF_THE_DAY_COMPLETE : {
             const quoteOfTheDay = action.payload;
-            //TODO alter and fix and make it look better
             let newObject = Object.assign({}, state, {quoteOfTheDay : quoteOfTheDay});
             return newObject;
         }

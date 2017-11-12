@@ -1,4 +1,16 @@
-<p>{{ (quoteOfTheDay$ | async)?.quote}}</p>
-<p>{{ (quoteOfTheDay$ | async)?.author}}</p>
+<div class="container">
+    <accordion>
+        <accordion-group #group [isOpen]="isOpen" (isOpenChange)="toggleVisbility($event)">
+            <div accordion-heading class="text-center">
+                <span class="h3">Quote of the day</span>
+                <span class="fa pull-right" [class.fa-caret-up]="isOpen" [class.fa-caret-down]="!isOpen"></span>
+            </div>
+            <blockquote class="text-center">
+                <p class="mb-0">{{ (quoteOfTheDay$ | async)?.quote}}</p>
+                <footer class="blockquote-footer">{{ (quoteOfTheDay$ | async)?.author}}</footer>
+            </blockquote>
+        </accordion-group>
+    </accordion>
+</div>
 
 <button (click)="temp()">click me </button>
