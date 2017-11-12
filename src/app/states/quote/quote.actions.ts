@@ -1,4 +1,5 @@
 import { CustomAction } from "../custom-action";
+import { Quote } from "../../components/models/quote";
 
 const QUOTE : string = "[QUOTE]";
 
@@ -14,9 +15,9 @@ export class GetQuoteOfTheDay implements CustomAction{
 
 export class GetQuoteOfTheDayComplete implements CustomAction{
     type: string = QuoteActionTypes.GET_QUOTE_OF_THE_DAY_COMPLETE;
-    payload: string;
+    payload: Quote;
     
-    constructor(payload : string){
+    constructor(payload : Quote){
         this.payload = payload;
     }
 }

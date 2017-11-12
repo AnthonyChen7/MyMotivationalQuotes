@@ -1,8 +1,9 @@
 import * as quote from './quote.actions';
 import { CustomAction } from '../custom-action';
+import { Quote } from '../../components/models/quote';
 
 export interface State{
-    quoteOfTheDay : string
+    quoteOfTheDay : Quote
 }
 
 const initialState : State ={

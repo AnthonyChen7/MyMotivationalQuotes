@@ -1,3 +1,4 @@
-<p>{{ (quoteOfTheDay$ | async)}}</p>
+<p>{{ (quoteOfTheDay$ | async)?.quote}}</p>
+<p>{{ (quoteOfTheDay$ | async)?.author}}</p>
 
 <button (click)="temp()">click me </button>
