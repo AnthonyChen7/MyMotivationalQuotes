@@ -2,10 +2,12 @@
     <accordion>
         <accordion-group #group [isOpen]="isOpen" (isOpenChange)="toggleVisbility($event)">
             <div accordion-heading class="text-center">
-                <span class="h3">Quote of the day</span>
-                <span class="fa pull-right" [class.fa-caret-up]="isOpen" [class.fa-caret-down]="!isOpen"></span>
+                <span class="h3">Quote of the Day</span>
+                <span style="float:right; line-height: 38px;">
+                    <i class="fa"  [class.fa-caret-up]="isOpen" [class.fa-caret-down]="!isOpen"></i>
+                </span>
             </div>
-            <blockquote class="text-center">
+            <blockquote>
                 <p class="mb-0">{{ (quoteOfTheDay$ | async)?.quote}}</p>
                 <footer class="blockquote-footer">{{ (quoteOfTheDay$ | async)?.author}}</footer>
             </blockquote>
