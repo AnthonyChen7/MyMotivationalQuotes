@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild, TemplateRef, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'create-quote-dialog',
@@ -17,7 +18,9 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
   @Output()
   dialogClosed = new EventEmitter();
 
-  constructor(private modalService : NgbModal) { }
+  quoteForm : FormGroup;
+
+  constructor(private modalService : NgbModal, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
   }
@@ -26,6 +29,7 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
     if(changes['isVisible'] && this.isVisible === true){
       //use window.setTimeout to allow view-creation in ng-on-change
       window.setTimeout(() => {
+        this.buildForm();
         let modalRef = this.modalService.open(this.modalDialogContent);
 
         modalRef.result.then((result : any) => {
@@ -39,6 +43,13 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
       });
       
     }
+  }
+
+  private buildForm(){
+    this.quoteForm = this.formBuilder.group({
+      quote: ['',[Validators.required]],
+      author: ['',[Validators.required]]
+    });
   }
 
 }

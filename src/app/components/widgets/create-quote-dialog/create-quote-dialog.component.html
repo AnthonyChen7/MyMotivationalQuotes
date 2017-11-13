@@ -7,15 +7,16 @@
     </button>
   </div>
 
-  <div class="modal-body">
+  <div class="modal-body" [formGroup]="quoteForm">
     <label>Author</label>
-    <input type="text">
+    <input type="text" maxlength="20" formControlName="author">
+
     <label>Quote</label>
-    <textarea></textarea>
+    <textarea formControlName="quote" maxlength="100"></textarea>
   </div>
 
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
-    <button type="button" class="btn btn-outline-dark">Create</button>
+    <button type="button" class="btn btn-outline-dark" [disabled]="quoteForm?.invalid">Create</button>
   </div>
 </ng-template>
