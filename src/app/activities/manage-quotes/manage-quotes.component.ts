@@ -15,7 +15,7 @@ import { AppState } from './../../states/index';
 export class ManageQuotesComponent implements OnInit {
 
   quoteOfTheDay$ : Observable<any>;
-  
+  showCreateQuoteDialog : boolean = false;
   constructor(private store: Store<any>) {}
 
   ngOnInit() {
@@ -25,5 +25,9 @@ export class ManageQuotesComponent implements OnInit {
 
   temp(){
     this.store.dispatch(new quote.GetQuoteOfTheDay());
+  }
+
+  toggleCreateQuoteDialogVisibility(isVisibile : boolean){
+    this.showCreateQuoteDialog = isVisibile;
   }
 }
