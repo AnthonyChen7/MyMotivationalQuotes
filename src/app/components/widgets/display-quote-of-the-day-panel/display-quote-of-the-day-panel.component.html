@@ -1,0 +1,16 @@
+<div class="container">
+  <accordion>
+      <accordion-group #group [isOpen]="isOpen" (isOpenChange)="toggleVisbility($event)">
+          <div accordion-heading class="text-center">
+              <span class="h3">Quote of the Day</span>
+              <span class="expand-icon">
+                  <i class="fa"  [class.fa-caret-up]="isOpen" [class.fa-caret-down]="!isOpen"></i>
+              </span>
+          </div>
+          <blockquote>
+              <p class="mb-0">{{ (quote)?.quote}}</p>
+              <footer class="blockquote-footer">{{ (quote)?.author}}</footer>
+          </blockquote>
+      </accordion-group>
+  </accordion>
+</div>

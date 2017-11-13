@@ -1,0 +1,8 @@
+accordion-group div{
+    cursor: pointer;
+}
+
+.expand-icon{
+    float:right; 
+    line-height: 38px;
+}

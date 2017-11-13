@@ -15,10 +15,7 @@ import { AppState } from './../../states/index';
 export class ManageQuotesComponent implements OnInit {
 
   quoteOfTheDay$ : Observable<any>;
-  tempOfTheDay$ : Observable<any>;
-
-  isOpen : boolean = true;
-
+  
   constructor(private store: Store<any>) {}
 
   ngOnInit() {
@@ -29,9 +26,4 @@ export class ManageQuotesComponent implements OnInit {
   temp(){
     this.store.dispatch(new quote.GetQuoteOfTheDay());
   }
-
-  toggleVisbility(isOpen : boolean){
-    this.isOpen = isOpen;
-  }
-
 }

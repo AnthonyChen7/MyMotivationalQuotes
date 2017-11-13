@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ManageQuotesComponent } from './manage-quotes.component';
 import { AccordionModule } from 'ngx-bootstrap';
 import { CreateQuoteDialogModule } from '../../components/widgets/create-quote-dialog/create-quote-dialog.module';
+import { DisplayQuoteOfTheDayPanelModule } from '../../components/widgets/display-quote-of-the-day-panel/display-quote-of-the-day-panel.module';
 @NgModule({
   imports: [
     CommonModule,
-    AccordionModule.forRoot(),
-    CreateQuoteDialogModule
+    CreateQuoteDialogModule,
+    DisplayQuoteOfTheDayPanelModule
   ],
   exports:[ManageQuotesComponent],
   declarations: [ManageQuotesComponent],
