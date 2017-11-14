@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild, TemplateRef, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'create-quote-dialog',
@@ -45,11 +45,30 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
     }
   }
 
+  getQuote() : AbstractControl{
+    return this.quoteForm.controls.quote;
+  }
+
+  getAuthor() : AbstractControl{
+    return this.quoteForm.controls.author;
+  }
+
   private buildForm(){
     this.quoteForm = this.formBuilder.group({
-      quote: ['',[Validators.required]],
-      author: ['',[Validators.required]]
+      quote: ['',[this.inputRequiredValidator()]],
+      author: ['',[this.inputRequiredValidator()]]
     });
   }
 
+  inputRequiredValidator(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} => {
+      const value = control.value;
+      
+      if(value === undefined || value === null || value === ""){
+        return {"required":"Input is required"};
+      }
+
+      return undefined;
+    };
+  }
 }
