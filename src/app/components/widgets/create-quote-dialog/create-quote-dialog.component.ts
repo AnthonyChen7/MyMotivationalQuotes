@@ -58,7 +58,7 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
   private buildForm(){
     this.quoteForm = this.formBuilder.group({
       quote: ['',[this.inputRequiredValidator()]],
-      author: ['',[this.inputRequiredValidator()]]
+      author: ['',[this.inputRequiredValidator(),this.regexValidator(this.ALPHANUMERIC_WITH_SPACE_REGEX)]]
     });
   }
 
@@ -71,6 +71,21 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
       }
 
       return undefined;
+    };
+  }
+
+  regexValidator(regexString : string,errorMsg : string = "Input is invalid"): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} => {
+      const value : string = control.value;
+
+      let result = value.match(regexString);
+
+      if(result){
+        return undefined;
+      }
+      else{
+        return {"invalid":errorMsg};
+      }
     };
   }
 }
