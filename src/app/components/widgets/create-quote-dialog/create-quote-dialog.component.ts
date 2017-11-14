@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild, TemplateRef, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl, ValidatorFn } from '@angular/forms';
+import { Quote } from '../../models/quote';
 
 @Component({
   selector: 'create-quote-dialog',
@@ -9,8 +10,8 @@ import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl, Valid
 })
 export class CreateQuoteDialogComponent implements OnInit, OnChanges {
   //https://ng-bootstrap.github.io/#/components/modal/api
-  readonly ALPHANUMERIC_WITH_SPACE_REGEX : string = "^([a-zA-Z0-9]+\s)*[a-zA-Z0-9]+$";
-
+  readonly ALPHANUMERIC_WITH_SPACE_REGEX : string = "^([a-zA-Z0-9]+\\s)*[a-zA-Z0-9]+$";
+  readonly NO_WHITE_SPACE_REGEX : string ="^[^\\s]+$";
   @Input()
   isVisible : boolean = false;
 
@@ -19,6 +20,9 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
 
   @Output()
   dialogClosed = new EventEmitter();
+
+  @Output()
+  quoteCreated = new EventEmitter<Quote>();
 
   quoteForm : FormGroup;
 
@@ -47,19 +51,21 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
     }
   }
 
+  createQuote(){
+    if(this.quoteForm.valid){
+      let quoteToCreate = new Quote();
+      quoteToCreate.quote = this.getQuote().value;
+      quoteToCreate.author = this.getAuthor().value;
+      this.quoteCreated.emit(quoteToCreate);
+    }
+  }
+
   getQuote() : AbstractControl{
     return this.quoteForm.controls.quote;
   }
 
   getAuthor() : AbstractControl{
     return this.quoteForm.controls.author;
-  }
-
-  private buildForm(){
-    this.quoteForm = this.formBuilder.group({
-      quote: ['',[this.inputRequiredValidator()]],
-      author: ['',[this.inputRequiredValidator(),this.regexValidator(this.ALPHANUMERIC_WITH_SPACE_REGEX)]]
-    });
   }
 
   inputRequiredValidator(): ValidatorFn {
@@ -87,5 +93,12 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
         return {"invalid":errorMsg};
       }
     };
+  }
+
+  private buildForm(){
+    this.quoteForm = this.formBuilder.group({
+      quote: ['',[this.inputRequiredValidator(), this.regexValidator(this.NO_WHITE_SPACE_REGEX)]],
+      author: ['',[this.inputRequiredValidator(),this.regexValidator(this.ALPHANUMERIC_WITH_SPACE_REGEX)]]
+    });
   }
 }
