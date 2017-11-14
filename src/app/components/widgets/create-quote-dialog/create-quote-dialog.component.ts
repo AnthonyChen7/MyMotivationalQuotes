@@ -9,6 +9,8 @@ import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl, Valid
 })
 export class CreateQuoteDialogComponent implements OnInit, OnChanges {
   //https://ng-bootstrap.github.io/#/components/modal/api
+  readonly ALPHANUMERIC_WITH_SPACE_REGEX : string = "^([a-zA-Z0-9]+\s)*[a-zA-Z0-9]+$";
+
   @Input()
   isVisible : boolean = false;
 
