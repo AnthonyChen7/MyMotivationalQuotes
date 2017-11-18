@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import * as fromRoot from './../../states/index';
 import * as quote from './../../states/quote/quote.actions';
 import { AppState } from './../../states/index';
+import { Quote } from '../../components/models/quote';
 
 @Component({
   selector: 'manage-quotes',
@@ -25,6 +26,10 @@ export class ManageQuotesComponent implements OnInit {
 
   temp(){
     this.store.dispatch(new quote.GetQuoteOfTheDay());
+  }
+
+  createQuote(event : Quote){
+    this.store.dispatch(new quote.CreateQuote(event));
   }
 
   toggleCreateQuoteDialogVisibility(isVisibile : boolean){

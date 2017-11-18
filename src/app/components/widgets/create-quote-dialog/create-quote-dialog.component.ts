@@ -22,7 +22,7 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
   dialogClosed = new EventEmitter();
 
   @Output()
-  quoteCreated = new EventEmitter<Quote>();
+  createQuote = new EventEmitter<Quote>();
 
   quoteForm : FormGroup;
 
@@ -51,12 +51,12 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
     }
   }
 
-  createQuote(){
+  submitQuote(){
     if(this.quoteForm.valid){
       let quoteToCreate = new Quote();
       quoteToCreate.quote = this.getQuote().value;
       quoteToCreate.author = this.getAuthor().value;
-      this.quoteCreated.emit(quoteToCreate);
+      this.createQuote.emit(quoteToCreate);
     }
   }
 
