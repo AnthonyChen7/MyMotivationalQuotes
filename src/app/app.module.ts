@@ -15,6 +15,7 @@ import { QuotesService } from './components/services/quotes.service';
 import { QuoteEffects } from './states/quote/quote.effects';
 import { firebaseConfig } from '../environments/firebase.config';
 import { AlertGrowlModule } from './components/widgets/alert-growl/alert-growl.module';
+import { AlertService } from './components/services/alert.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { AlertGrowlModule } from './components/widgets/alert-growl/alert-growl.m
     AngularFireDatabaseModule,
     AlertGrowlModule
   ],
-  providers: [QuotesService],
+  providers: [QuotesService, AlertService],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })

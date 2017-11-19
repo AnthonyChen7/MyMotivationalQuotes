@@ -10,9 +10,9 @@ export enum AlertType {
 export class Alert {
   type: AlertType;
   message: string;
-  action: CustomAction;
+  action: string;
 
-  constructor(message? : string, type? : AlertType, action? : CustomAction) {
+  constructor(message? : string, type? : AlertType, action? : string) {
     this.message = message;
     this.type = type;
     this.action = action;

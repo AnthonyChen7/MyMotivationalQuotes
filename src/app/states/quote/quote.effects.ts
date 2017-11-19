@@ -7,12 +7,14 @@ import { QuotesService } from "../../components/services/quotes.service";
 import { CustomAction } from '../custom-action';
 import * as quoteActions from "./quote.actions";
 import { Quote } from "../../components/models/quote";
+import { AlertService } from "../../components/services/alert.service";
+import { Alert, AlertType } from "../../components/models/alert";
 
 
 @Injectable()
 export class QuoteEffects {
   private jsonConverter: JsonConvert;
-  constructor(private quoteService: QuotesService, private actions: Actions) {
+  constructor(private quoteService: QuotesService, private actions: Actions, private alertService: AlertService) {
     this.jsonConverter = new JsonConvert();
   }
 
@@ -43,7 +45,9 @@ export class QuoteEffects {
       (observer: Observer<Action>) => {
         this.quoteService.createQuote(payload)
         .then(() => {
-          
+          this.alertService.alert(
+            new Alert("Quote successfully created",AlertType.Success, quoteActions.QuoteActionTypes.CREATE_QUOTE)
+          );
         })
         .catch((error) => {
           console.log(error);

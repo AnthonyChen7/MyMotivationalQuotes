@@ -8,6 +8,7 @@ import { AlertService } from '../../services/alert.service';
   styleUrls: ['./alert-growl.component.css']
 })
 export class AlertGrowlComponent implements OnInit {
+  
   alerts : Alert[] = [];
   
   constructor(private alertService : AlertService) { }
@@ -17,6 +18,9 @@ export class AlertGrowlComponent implements OnInit {
       (alert: Alert) => {
         if(alert){
           this.alerts.push(alert);
+          window.setTimeout(() => {
+            this.removeAlert(alert);
+          },7000);
         }
       }
     );
@@ -42,6 +46,5 @@ export class AlertGrowlComponent implements OnInit {
         case AlertType.Warning:
             return 'alert alert-warning';
     }
-}
-
+  }
 }

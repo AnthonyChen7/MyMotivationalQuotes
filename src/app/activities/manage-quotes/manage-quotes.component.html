@@ -4,7 +4,7 @@
 <button (click)="temp()">click me </button>
 <button (click)="toggleCreateQuoteDialogVisibility(true)">Create new quote place-holder</button>
 <create-quote-dialog
-    [isVisible]="showCreateQuoteDialog"
+    [(isVisible)]="showCreateQuoteDialog"
     (dialogClosed)="toggleCreateQuoteDialogVisibility(false)"
     (createQuote)="createQuote($event)">
 </create-quote-dialog>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, TemplateRef, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl, ValidatorFn } from '@angular/forms';
 import { Quote } from '../../models/quote';
 
@@ -24,6 +24,7 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
   createQuote = new EventEmitter<Quote>();
 
   quoteForm : FormGroup;
+  modalRef : NgbModalRef;
 
   constructor(private modalService : NgbModal, private formBuilder: FormBuilder) { }
 
@@ -31,22 +32,29 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes['isVisible'] && this.isVisible === true){
-      //use window.setTimeout to allow view-creation in ng-on-change
-      window.setTimeout(() => {
-        this.buildForm();
-        let modalRef = this.modalService.open(this.modalDialogContent);
+    if(changes['isVisible']){
+      if(this.isVisible === true){
+        //use window.setTimeout to allow view-creation in ng-on-change
+        window.setTimeout(() => {
+          this.buildForm();
+          this.modalRef = this.modalService.open(this.modalDialogContent);
 
-        modalRef.result.then((result : any) => {
-          //close button handler
-          this.dialogClosed.emit();
-        },
-        (reason: any) => {
-          //dismiss button handler
-          this.dialogClosed.emit();
+          this.modalRef.result.then((result : any) => {
+            //close button handler
+            this.closeDialog();
+          },
+          (reason: any) => {
+            //dismiss button handler
+            this.closeDialog();
+          });
         });
-      });
-      
+      }
+      else{
+        if(this.modalRef){
+          this.modalRef.close();
+          this.closeDialog();
+        }
+      }
     }
   }
 
@@ -99,5 +107,10 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
       quote: ['',[this.inputRequiredValidator()]],
       author: ['',[this.inputRequiredValidator(),this.regexValidator(this.ALPHANUMERIC_WITH_SPACE_REGEX)]]
     });
+  }
+
+  private closeDialog(){
+    this.modalRef = undefined;
+    this.dialogClosed.emit();
   }
 }

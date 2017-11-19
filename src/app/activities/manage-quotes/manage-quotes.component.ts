@@ -7,6 +7,8 @@ import * as fromRoot from './../../states/index';
 import * as quote from './../../states/quote/quote.actions';
 import { AppState } from './../../states/index';
 import { Quote } from '../../components/models/quote';
+import { AlertService } from '../../components/services/alert.service';
+import { Alert } from '../../components/models/alert';
 
 @Component({
   selector: 'manage-quotes',
@@ -17,11 +19,21 @@ export class ManageQuotesComponent implements OnInit {
 
   quoteOfTheDay$ : Observable<any>;
   showCreateQuoteDialog : boolean = false;
-  constructor(private store: Store<any>) {}
+  constructor(private store: Store<any>, private alertService : AlertService) {}
 
   ngOnInit() {
     this.store.dispatch(new quote.GetQuoteOfTheDay());
     this.quoteOfTheDay$ = this.store.select(fromRoot.getQuoteOfTheDay);
+
+    this.alertService.getAlert().subscribe(
+      (alert : Alert) => {
+        if(alert){
+          if(alert.action === quote.QuoteActionTypes.CREATE_QUOTE && this.showCreateQuoteDialog){
+            this.showCreateQuoteDialog = false;
+          }
+        }
+      }
+    );
   }
 
   temp(){
