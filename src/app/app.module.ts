@@ -14,6 +14,7 @@ import {reducers, metaReducers} from "./states/index";
 import { QuotesService } from './components/services/quotes.service';
 import { QuoteEffects } from './states/quote/quote.effects';
 import { firebaseConfig } from '../environments/firebase.config';
+import { AlertGrowlModule } from './components/widgets/alert-growl/alert-growl.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { firebaseConfig } from '../environments/firebase.config';
     EffectsModule.forRoot([QuoteEffects]),
     ManageQuotesModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AlertGrowlModule
   ],
   providers: [QuotesService],
   bootstrap: [AppComponent],
