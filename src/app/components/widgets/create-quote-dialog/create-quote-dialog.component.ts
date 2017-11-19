@@ -11,7 +11,6 @@ import { Quote } from '../../models/quote';
 export class CreateQuoteDialogComponent implements OnInit, OnChanges {
   //https://ng-bootstrap.github.io/#/components/modal/api
   readonly ALPHANUMERIC_WITH_SPACE_REGEX : string = "^([a-zA-Z0-9]+\\s)*[a-zA-Z0-9]+$";
-  readonly NO_WHITE_SPACE_REGEX : string ="^[^\\s]+$";
   @Input()
   isVisible : boolean = false;
 
@@ -97,7 +96,7 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
 
   private buildForm(){
     this.quoteForm = this.formBuilder.group({
-      quote: ['',[this.inputRequiredValidator(), this.regexValidator(this.NO_WHITE_SPACE_REGEX)]],
+      quote: ['',[this.inputRequiredValidator()]],
       author: ['',[this.inputRequiredValidator(),this.regexValidator(this.ALPHANUMERIC_WITH_SPACE_REGEX)]]
     });
   }

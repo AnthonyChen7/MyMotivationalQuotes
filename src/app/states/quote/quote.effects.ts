@@ -39,7 +39,6 @@ export class QuoteEffects {
   this.actions.ofType(quoteActions.QuoteActionTypes.CREATE_QUOTE)
   .map(toPayload)
   .switchMap((payload) => {
-    // console.log(payload);
     return Observable.create(
       (observer: Observer<Action>) => {
         this.quoteService.createQuote(payload);
