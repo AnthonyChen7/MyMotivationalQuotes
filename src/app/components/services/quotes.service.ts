@@ -2,17 +2,18 @@ import { Injectable } from "@angular/core";
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from "rxjs";
 import { Quote } from "../models/quote";
-import { AngularFireDatabase } from "angularfire2/database";
+import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 
 @Injectable()
 export class QuotesService {
   //https://www.concretepage.com/angular-2/angular-2-http-post-example
+  private quotes : AngularFireList<Quote>;
   constructor(private httpService: Http, private angularFireDatabase : AngularFireDatabase) {
-
+    this.quotes = this.angularFireDatabase.list('quotes');
   }
 
   createQuote(quote: Quote) {
-
+    this.quotes.push(quote);
   }
 
   getQuoteOfTheDay() {
