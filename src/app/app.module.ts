@@ -6,11 +6,14 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { StoreModule, compose, combineReducers, ActionReducer, MetaReducer } from '@ngrx/store';
 import { storeLogger } from 'ngrx-store-logger';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule} from 'angularfire2/database';
 import { ManageQuotesModule } from './activities/manage-quotes/manage-quotes.module';
 import { AppComponent } from './app.component';
 import {reducers, metaReducers} from "./states/index";
 import { QuotesService } from './components/services/quotes.service';
 import { QuoteEffects } from './states/quote/quote.effects';
+import { firebaseConfig } from '../environments/firebase.config';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { QuoteEffects } from './states/quote/quote.effects';
     NgbModule.forRoot(),
     StoreModule.forRoot(reducers,{metaReducers}),
     EffectsModule.forRoot([QuoteEffects]),
-    ManageQuotesModule
+    ManageQuotesModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule
   ],
   providers: [QuotesService],
   bootstrap: [AppComponent],
