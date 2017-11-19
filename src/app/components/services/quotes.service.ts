@@ -13,7 +13,9 @@ export class QuotesService {
   }
 
   createQuote(quote: Quote) {
-    this.quotes.push(quote);
+    //this will create new entry
+    //do it like this to be able to return a promise
+    return this.quotes.push(quote).set(quote);
   }
 
   getQuoteOfTheDay() {
@@ -34,7 +36,7 @@ export class QuotesService {
     return Observable.throw(error);
   }
   private handleErrorPromise(error: Response) {
-    console.error();
+    console.error(error);
     return Promise.reject(error);
   }
 }

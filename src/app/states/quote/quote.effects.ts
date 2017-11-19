@@ -41,7 +41,13 @@ export class QuoteEffects {
   .switchMap((payload) => {
     return Observable.create(
       (observer: Observer<Action>) => {
-        this.quoteService.createQuote(payload);
+        this.quoteService.createQuote(payload)
+        .then(() => {
+          
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       }
     );
   });
