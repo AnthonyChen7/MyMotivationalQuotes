@@ -19,6 +19,18 @@ export class QuoteEffects {
   }
 
   @Effect()
+  statusMessage$: Observable<Action>=
+  this.actions.ofType(quoteActions.QuoteActionTypes.STATUS_MESSAGE)
+  .map(toPayload)
+  .switchMap((payload)=> {
+    return Observable.create(
+      (observer: Observer<Action>) => {
+        this.alertService.alert(payload);
+      }
+    );
+  });
+
+  @Effect()
   loadQuoteOfTheDay$: Observable<Action> =
   this.actions.ofType(quoteActions.QuoteActionTypes.GET_QUOTE_OF_THE_DAY)
     .switchMap((action) => {
@@ -45,9 +57,7 @@ export class QuoteEffects {
       (observer: Observer<Action>) => {
         this.quoteService.createQuote(payload)
         .then(() => {
-          this.alertService.alert(
-            new Alert("Quote successfully created",AlertType.Success, quoteActions.QuoteActionTypes.CREATE_QUOTE)
-          );
+          observer.next(new quoteActions.StatusMessage(new Alert("Quote successfully created",AlertType.Success, quoteActions.QuoteActionTypes.CREATE_QUOTE)));
         })
         .catch((error) => {
           console.log(error);
