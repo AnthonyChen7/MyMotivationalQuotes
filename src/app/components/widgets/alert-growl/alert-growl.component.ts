@@ -9,8 +9,7 @@ import { Message } from 'primeng/components/common/message';
   styleUrls: ['./alert-growl.component.css']
 })
 export class AlertGrowlComponent implements OnInit {
-  
-  alerts : Alert[] = [];
+
   messages : Message[] = [];
   
   constructor(private alertService : AlertService) { }
@@ -19,21 +18,20 @@ export class AlertGrowlComponent implements OnInit {
     this.alertService.getAlert().subscribe(
       (alert: Alert) => {
         if(alert){
-          this.alerts.push(alert);
-          window.setTimeout(() => {
-            this.removeAlert(alert);
-            this.createMessages();
-          },7000);
-          this.createMessages();
+          this.addGrowlMessage(this.getSeverity(alert.type),alert.message,"");
         }
       }
     );
   }
 
-  removeAlert(alert : Alert){
-    this.alerts = this.alerts.filter(element => element !== alert);
+  addGrowlMessage(severity, summary, detail) {
+    let message = { severity : severity, summary : summary, detail : detail };
+    this.messages.push(message);
+    //remove growl after a delay if not manually closed
+    setTimeout(() => {
+      this.messages.splice(this.messages.indexOf(message), 1);
+    }, 5000)
   }
-
   getSeverity(alertType: AlertType) {
     switch (alertType) {
         case AlertType.Success:
@@ -46,13 +44,5 @@ export class AlertGrowlComponent implements OnInit {
         default:
             return 'warn';
     }
-  }
-
-  createMessages(){
-    this.messages = this.alerts.map((element) => {
-      return {severity:this.getSeverity(element.type), summary:element.message};
-    });
-  }
-
-  
+  }  
 }
