@@ -1,4 +1,1 @@
-<div *ngFor="let alert of alerts" class="{{ cssClass(alert) }} alert-dismissable">
-  {{alert?.message}}
-  <a class="close on-hover" (click)="removeAlert(alert)">&times;</a>
-</div>
+<p-growl [(value)]="messages"></p-growl>

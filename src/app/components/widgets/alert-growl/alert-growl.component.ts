@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Alert, AlertType } from '../../models/alert';
 import { AlertService } from '../../services/alert.service';
+import { Message } from 'primeng/components/common/message';
 
 @Component({
   selector: 'alert-growl',
@@ -10,6 +11,7 @@ import { AlertService } from '../../services/alert.service';
 export class AlertGrowlComponent implements OnInit {
   
   alerts : Alert[] = [];
+  messages : Message[] = [];
   
   constructor(private alertService : AlertService) { }
 
@@ -20,7 +22,9 @@ export class AlertGrowlComponent implements OnInit {
           this.alerts.push(alert);
           window.setTimeout(() => {
             this.removeAlert(alert);
+            this.createMessages();
           },7000);
+          this.createMessages();
         }
       }
     );
@@ -30,21 +34,25 @@ export class AlertGrowlComponent implements OnInit {
     this.alerts = this.alerts.filter(element => element !== alert);
   }
 
-  cssClass(alert: Alert) {
-    if (!alert) {
-        return;
-    }
-
-    // return css class based on alert type
-    switch (alert.type) {
+  getSeverity(alertType: AlertType) {
+    switch (alertType) {
         case AlertType.Success:
-            return 'alert alert-success';
+            return 'success';
         case AlertType.Error:
-            return 'alert alert-danger';
+            return 'error';
         case AlertType.Info:
-            return 'alert alert-info';
+            return 'info';
         case AlertType.Warning:
-            return 'alert alert-warning';
+        default:
+            return 'warn';
     }
   }
+
+  createMessages(){
+    this.messages = this.alerts.map((element) => {
+      return {severity:this.getSeverity(element.type), summary:element.message};
+    });
+  }
+
+  
 }

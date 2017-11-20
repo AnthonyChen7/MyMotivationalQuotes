@@ -36,6 +36,7 @@
     "ngrx-generator": "^1.1.0",
     "ngrx-store-logger": "^0.2.0",
     "ngx-bootstrap": "^2.0.0-beta.8",
+    "primeng": "^5.0.0-rc.0",
     "reselect": "^3.0.1",
     "rxjs": "^5.4.3",
     "zone.js": "^0.8.14"

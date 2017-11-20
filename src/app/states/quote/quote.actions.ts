@@ -43,4 +43,4 @@ export class StatusMessage implements CustomAction{
     }
 }
 
-export type QuoteActions = GetQuoteOfTheDay | GetQuoteOfTheDayComplete | CreateQuote;
+export type QuoteActions = GetQuoteOfTheDay | GetQuoteOfTheDayComplete | CreateQuote | StatusMessage;
