@@ -8,3 +8,19 @@ textarea {
     display: flex; 
     justify-content:space-between;
 }
+
+/** label will start at column 1 and end at column 2 */
+label{
+    grid-column: 1/2;
+}
+
+/** input/text-area will start at column 2 and end at column 3 */
+input, textarea{
+    grid-column: 2/3;
+}
+
+.modal-body{
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-gap: 16px;
+}
