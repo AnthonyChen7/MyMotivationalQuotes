@@ -3,3 +3,8 @@ textarea {
     height: 150px;
     resize: none;
 }
+
+.modal-footer{
+    display: flex; 
+    justify-content:space-between;
+}
