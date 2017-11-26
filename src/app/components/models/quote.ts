@@ -2,7 +2,7 @@ import {JsonObject, JsonProperty} from "json2typescript";
 
 @JsonObject
 export class Quote{
-    @JsonProperty("key",String)
+
     private key: string;
 
     @JsonProperty("quote",String)

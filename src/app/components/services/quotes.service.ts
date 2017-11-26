@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from "rxjs";
 import { Quote } from "../models/quote";
-import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
+import { AngularFireDatabase, AngularFireList, AngularFireAction } from "angularfire2/database";
 
 @Injectable()
 export class QuotesService {
@@ -10,12 +10,6 @@ export class QuotesService {
   private quotesRef : AngularFireList<Quote>;
   constructor(private httpService: Http, private angularFireDatabase : AngularFireDatabase) {
     this.quotesRef = this.angularFireDatabase.list('quotes');
-    // this.quotesRef.snapshotChanges().subscribe((val)=>{
-    //   val.forEach((someVal)=>{
-    //     console.log(someVal.key);
-    //     console.log(someVal.payload.val());
-    //   });
-    // });
   }
 
   createQuote(quote: Quote) {

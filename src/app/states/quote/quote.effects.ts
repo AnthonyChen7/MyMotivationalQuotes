@@ -21,10 +21,18 @@ export class QuoteEffects {
   @Effect()
   getQuoteList$: Observable<Action>=
   this.actions.ofType(quoteActions.QuoteActionTypes.GET_QUOTE_LIST)
-  .switchMap((action)=>{
+  .switchMap(action => this.quoteService.getQuoteList())
+  .switchMap( (quoteListSnapShot) => {
     return Observable.create(
-      (observer: Observer<Action>)=> {
-        //TODO merge as single javascript object and then de-serialize it
+      (observer: Observer<Action>) => {
+        let quotes = new Array<Quote>();
+        quoteListSnapShot.forEach(
+          (quoteSnapShot)=>{
+            let quote: Quote = this.jsonConverter.deserialize(quoteSnapShot.payload.val(), Quote);
+            quotes.push(new Quote(quote.quote, quote.author, quoteSnapShot.key));
+          }
+        );
+        observer.next(new quoteActions.StatusMessage(new Alert("blah",AlertType.Warning, quoteActions.QuoteActionTypes.GET_QUOTE_LIST)));
       }
     );
   });
@@ -54,6 +62,7 @@ export class QuoteEffects {
             })
             .catch((error) => {
               observer.next(new quoteActions.GetQuoteOfTheDayComplete(undefined));
+              observer.next(new quoteActions.StatusMessage(new Alert("Unable to retrieve quote of the day",AlertType.Error, quoteActions.QuoteActionTypes.GET_QUOTE_OF_THE_DAY_COMPLETE)));
             });
         }
       );
@@ -72,6 +81,7 @@ export class QuoteEffects {
         })
         .catch((error) => {
           console.log(error);
+          observer.next(new quoteActions.StatusMessage(new Alert("Quote not successfully created",AlertType.Error, quoteActions.QuoteActionTypes.CREATE_QUOTE)));
         });
       }
     );
