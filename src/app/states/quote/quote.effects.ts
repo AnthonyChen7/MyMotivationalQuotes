@@ -24,7 +24,7 @@ export class QuoteEffects {
   .switchMap((action)=>{
     return Observable.create(
       (observer: Observer<Action>)=> {
-        
+        //TODO merge as single javascript object and then de-serialize it
       }
     );
   });
