@@ -7,15 +7,25 @@ import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 @Injectable()
 export class QuotesService {
   //https://www.concretepage.com/angular-2/angular-2-http-post-example
-  private quotes : AngularFireList<Quote>;
+  private quotesRef : AngularFireList<Quote>;
   constructor(private httpService: Http, private angularFireDatabase : AngularFireDatabase) {
-    this.quotes = this.angularFireDatabase.list('quotes');
+    this.quotesRef = this.angularFireDatabase.list('quotes');
+    // this.quotesRef.snapshotChanges().subscribe((val)=>{
+    //   val.forEach((someVal)=>{
+    //     console.log(someVal.key);
+    //     console.log(someVal.payload.val());
+    //   });
+    // });
   }
 
   createQuote(quote: Quote) {
     //this will create new entry
     //do it like this to be able to return a promise
-    return this.quotes.push(quote).set(quote);
+    return this.quotesRef.push(quote).set(quote);
+  }
+
+  getQuoteList(){
+    return this.quotesRef.snapshotChanges();
   }
 
   getQuoteOfTheDay() {

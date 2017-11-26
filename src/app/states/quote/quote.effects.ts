@@ -19,6 +19,17 @@ export class QuoteEffects {
   }
 
   @Effect()
+  getQuoteList$: Observable<Action>=
+  this.actions.ofType(quoteActions.QuoteActionTypes.GET_QUOTE_LIST)
+  .switchMap((action)=>{
+    return Observable.create(
+      (observer: Observer<Action>)=> {
+        
+      }
+    );
+  });
+
+  @Effect()
   statusMessage$: Observable<Action>=
   this.actions.ofType(quoteActions.QuoteActionTypes.STATUS_MESSAGE)
   .map(toPayload)

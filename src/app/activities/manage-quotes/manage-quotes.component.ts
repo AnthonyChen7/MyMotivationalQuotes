@@ -23,6 +23,7 @@ export class ManageQuotesComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new quote.GetQuoteOfTheDay());
+    this.store.dispatch(new quote.GetQuoteList());
     this.quoteOfTheDay$ = this.store.select(fromRoot.getQuoteOfTheDay);
 
     this.alertService.getAlert().subscribe(
@@ -37,7 +38,7 @@ export class ManageQuotesComponent implements OnInit {
   }
 
   temp(){
-    this.store.dispatch(new quote.GetQuoteOfTheDay());
+    this.store.dispatch(new quote.GetQuoteList());
   }
 
   createQuote(event : Quote){

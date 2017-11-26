@@ -8,12 +8,18 @@ export const QuoteActionTypes = {
     GET_QUOTE_OF_THE_DAY : QUOTE+"Get quote of the day",
     GET_QUOTE_OF_THE_DAY_COMPLETE: QUOTE+"Get quote of the day complete",
     CREATE_QUOTE: QUOTE+"Creating new quote",
-    STATUS_MESSAGE: QUOTE+"Status Message"
+    STATUS_MESSAGE: QUOTE+"Status Message",
+    GET_QUOTE_LIST: QUOTE+"Getting list of quotes"
 };
 
 export class GetQuoteOfTheDay implements CustomAction{
     type: string = QuoteActionTypes.GET_QUOTE_OF_THE_DAY;
     constructor(){}
+}
+
+export class GetQuoteList implements CustomAction{
+    type: string = QuoteActionTypes.GET_QUOTE_LIST;
+    constructor(){}    
 }
 
 export class GetQuoteOfTheDayComplete implements CustomAction{
@@ -43,4 +49,4 @@ export class StatusMessage implements CustomAction{
     }
 }
 
-export type QuoteActions = GetQuoteOfTheDay | GetQuoteOfTheDayComplete | CreateQuote | StatusMessage;
+export type QuoteActions = GetQuoteOfTheDay | GetQuoteOfTheDayComplete | CreateQuote | StatusMessage | GetQuoteList;
