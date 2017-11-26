@@ -32,7 +32,7 @@ export class QuoteEffects {
             quotes.push(new Quote(quote.quote, quote.author, quoteSnapShot.key));
           }
         );
-        observer.next(new quoteActions.StatusMessage(new Alert("blah",AlertType.Warning, quoteActions.QuoteActionTypes.GET_QUOTE_LIST)));
+        observer.next(new quoteActions.GetQuoteListComplete(quotes));
       }
     );
   });
