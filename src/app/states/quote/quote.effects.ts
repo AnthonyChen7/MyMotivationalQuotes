@@ -26,10 +26,11 @@ export class QuoteEffects {
     return Observable.create(
       (observer: Observer<Action>) => {
         let quotes = new Array<Quote>();
+
         quoteListSnapShot.forEach(
           (quoteSnapShot)=>{
             let quote: Quote = this.jsonConverter.deserialize(quoteSnapShot.payload.val(), Quote);
-            quotes.push(new Quote(quote.quote, quote.author, quoteSnapShot.key));
+            quotes.push(quote);
           }
         );
         observer.next(new quoteActions.GetQuoteListComplete(quotes));
