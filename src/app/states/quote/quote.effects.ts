@@ -9,6 +9,7 @@ import * as quoteActions from "./quote.actions";
 import { Quote } from "../../components/models/quote";
 import { AlertService } from "../../components/services/alert.service";
 import { Alert, AlertType } from "../../components/models/alert";
+import { UserCreatedQuote } from "../../components/models/user-created-quote";
 
 
 @Injectable()
@@ -29,7 +30,7 @@ export class QuoteEffects {
 
         quoteListSnapShot.forEach(
           (quoteSnapShot)=>{
-            let quote: Quote = this.jsonConverter.deserialize(quoteSnapShot.payload.val(), Quote);
+            let quote: UserCreatedQuote = this.jsonConverter.deserialize(quoteSnapShot.payload.val(), UserCreatedQuote);
             quotes.push(quote);
           }
         );

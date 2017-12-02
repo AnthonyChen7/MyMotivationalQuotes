@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild, TemplateRef, OnChanges, SimpleChan
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl, ValidatorFn } from '@angular/forms';
 import { Quote } from '../../models/quote';
+import { UserCreatedQuote } from '../../models/user-created-quote';
 
 @Component({
   selector: 'create-quote-dialog',
@@ -60,9 +61,7 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
 
   submitQuote(){
     if(this.quoteForm.valid){
-      let quoteToCreate = new Quote();
-      quoteToCreate.quote = this.getQuote().value;
-      quoteToCreate.author = this.getAuthor().value;
+      let quoteToCreate = new UserCreatedQuote(this.getQuote().value, this.getAuthor().value);
       this.createQuote.emit(quoteToCreate);
     }
   }
