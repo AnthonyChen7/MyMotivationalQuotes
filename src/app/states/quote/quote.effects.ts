@@ -94,14 +94,6 @@ export class QuoteEffects {
             }
           }
         );
-        // this.quoteService.createQuote(payload)
-        // .then(() => {
-        //   observer.next(new quoteActions.StatusMessage(new Alert("Quote successfully created",AlertType.Success, quoteActions.QuoteActionTypes.CREATE_QUOTE)));
-        // })
-        // .catch((error) => {
-        //   console.log(error);
-        //   observer.next(new quoteActions.StatusMessage(new Alert("Quote not successfully created",AlertType.Error, quoteActions.QuoteActionTypes.CREATE_QUOTE)));
-        // });
       }
     );
   }); 

@@ -10,16 +10,8 @@ import { UserCreatedQuote } from "../models/user-created-quote";
 export class QuotesService {
   //https://www.concretepage.com/angular-2/angular-2-http-post-example
   private quotesRef : AngularFireList<Quote>;
-  private key$: BehaviorSubject<string>;
-  private items$: Observable<AngularFireAction<any>[]>;
   constructor(private httpService: Http, private angularFireDatabase : AngularFireDatabase) {
-    this.key$ = new BehaviorSubject(undefined);
     this.quotesRef = this.angularFireDatabase.list('quotes');
-    this.items$ = this.key$.switchMap(key =>
-      this.angularFireDatabase.list('quotes', ref =>
-        key ? ref.orderByChild('key').equalTo(key) : ref
-      ).valueChanges()
-    );
   }
 
   createQuote(quote: UserCreatedQuote) {
@@ -30,12 +22,7 @@ export class QuotesService {
 
   getQuoteList(quoteKey?: string){
     return this.angularFireDatabase.list('quotes', ref => quoteKey?
-                 ref.orderByChild('key').equalTo(quoteKey) : ref).valueChanges();
-  }
-
-  findQuote(quoteKey: string){
-    this.key$.next(quoteKey);
-    return this.items$;
+                 ref.orderByChild('key').equalTo(quoteKey) : ref).valueChanges().take(1);
   }
 
   getQuoteOfTheDay() {
