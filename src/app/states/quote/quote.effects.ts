@@ -23,14 +23,14 @@ export class QuoteEffects {
   getQuoteList$: Observable<Action>=
   this.actions.ofType(quoteActions.QuoteActionTypes.GET_QUOTE_LIST)
   .switchMap(action => this.quoteService.getQuoteList())
-  .switchMap( (quoteListSnapShot) => {
+  .switchMap( (quoteList) => {
     return Observable.create(
       (observer: Observer<Action>) => {
         let quotes = new Array<Quote>();
 
-        quoteListSnapShot.forEach(
-          (quoteSnapShot)=>{
-            let quote: UserCreatedQuote = this.jsonConverter.deserialize(quoteSnapShot.payload.val(), UserCreatedQuote);
+        quoteList.forEach(
+          (value)=>{
+            let quote: UserCreatedQuote = this.jsonConverter.deserialize(value, UserCreatedQuote);
             quotes.push(quote);
           }
         );
@@ -74,18 +74,35 @@ export class QuoteEffects {
   createNewQuote$: Observable<Action> =
   this.actions.ofType(quoteActions.QuoteActionTypes.CREATE_QUOTE)
   .map(toPayload)
-  .switchMap((payload) => {
+  .switchMap((payload: UserCreatedQuote) => {
     return Observable.create(
       (observer: Observer<Action>) => {
-        this.quoteService.createQuote(payload)
-        .then(() => {
-          observer.next(new quoteActions.StatusMessage(new Alert("Quote successfully created",AlertType.Success, quoteActions.QuoteActionTypes.CREATE_QUOTE)));
-        })
-        .catch((error) => {
-          console.log(error);
-          observer.next(new quoteActions.StatusMessage(new Alert("Quote not successfully created",AlertType.Error, quoteActions.QuoteActionTypes.CREATE_QUOTE)));
-        });
+        this.quoteService.getQuoteList(payload.getKey()).subscribe(
+          (quoteList) => {
+            if(!quoteList || quoteList.length === 0){
+              this.quoteService.createQuote(payload)
+              .then(() => {
+                observer.next(new quoteActions.StatusMessage(new Alert("Quote successfully created",AlertType.Success, quoteActions.QuoteActionTypes.CREATE_QUOTE)));
+              })
+              .catch((error) => {
+                console.log(error);
+                observer.next(new quoteActions.StatusMessage(new Alert("Quote not successfully created",AlertType.Error, quoteActions.QuoteActionTypes.CREATE_QUOTE)));
+              });
+            }
+            else{
+              observer.next(new quoteActions.StatusMessage(new Alert("Quote already exists",AlertType.Error, quoteActions.QuoteActionTypes.CREATE_QUOTE)));
+            }
+          }
+        );
+        // this.quoteService.createQuote(payload)
+        // .then(() => {
+        //   observer.next(new quoteActions.StatusMessage(new Alert("Quote successfully created",AlertType.Success, quoteActions.QuoteActionTypes.CREATE_QUOTE)));
+        // })
+        // .catch((error) => {
+        //   console.log(error);
+        //   observer.next(new quoteActions.StatusMessage(new Alert("Quote not successfully created",AlertType.Error, quoteActions.QuoteActionTypes.CREATE_QUOTE)));
+        // });
       }
     );
-  });
+  }); 
 }

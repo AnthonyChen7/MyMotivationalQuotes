@@ -8,7 +8,7 @@ import * as quote from './../../states/quote/quote.actions';
 import { AppState } from './../../states/index';
 import { Quote } from '../../components/models/quote';
 import { AlertService } from '../../components/services/alert.service';
-import { Alert } from '../../components/models/alert';
+import { Alert, AlertType } from '../../components/models/alert';
 
 @Component({
   selector: 'manage-quotes',
@@ -29,9 +29,9 @@ export class ManageQuotesComponent implements OnInit {
     this.alertService.getAlert().subscribe(
       (alert : Alert) => {
         if(alert){
-          if(alert.action === quote.QuoteActionTypes.CREATE_QUOTE && this.showCreateQuoteDialog){
-            this.showCreateQuoteDialog = false;
-          }
+            if(alert.action === quote.QuoteActionTypes.CREATE_QUOTE && this.showCreateQuoteDialog){
+              this.showCreateQuoteDialog = false;
+            }
         }
       }
     );
