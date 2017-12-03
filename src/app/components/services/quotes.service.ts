@@ -22,6 +22,12 @@ export class QuotesService {
 
   getQuoteList(quoteKey?: string){
     return this.angularFireDatabase.list('quotes', ref => quoteKey?
+                 ref.orderByChild('key').equalTo(quoteKey) : ref).valueChanges();
+  }
+
+  findQuote(quoteKey?: string){
+    // use take(1) so that it kills the subscription once first value is emitted
+    return this.angularFireDatabase.list('quotes', ref => quoteKey?
                  ref.orderByChild('key').equalTo(quoteKey) : ref).valueChanges().take(1);
   }
 

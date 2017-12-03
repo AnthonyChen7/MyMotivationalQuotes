@@ -77,7 +77,7 @@ export class QuoteEffects {
   .switchMap((payload: UserCreatedQuote) => {
     return Observable.create(
       (observer: Observer<Action>) => {
-        this.quoteService.getQuoteList(payload.getKey()).subscribe(
+        this.quoteService.findQuote(payload.getKey()).subscribe(
           (quoteList) => {
             if(!quoteList || quoteList.length === 0){
               this.quoteService.createQuote(payload)
