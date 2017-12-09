@@ -1,6 +1,5 @@
-textarea {
+textarea, input {
     width: 300px;
-    height: 150px;
     resize: none;
 }
 
@@ -19,8 +18,12 @@ input, textarea{
     grid-column: 2/3;
 }
 
+form-field-status-indicator{
+    grid-column: 3/4;
+}
+
 .modal-body{
     display: grid; 
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: 1fr 1fr 1fr; 
     grid-gap: 16px;
 }
