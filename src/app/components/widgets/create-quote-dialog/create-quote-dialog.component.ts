@@ -4,14 +4,17 @@ import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl, Valid
 import { Quote } from '../../models/quote';
 import { UserCreatedQuote } from '../../models/user-created-quote';
 
+const INIT_VALUE: string = '';
+const ALPHANUMERIC_WITH_SPACE_REGEX : string = "^([a-zA-Z0-9]+\\s)*[a-zA-Z0-9]+$";
+
 @Component({
   selector: 'create-quote-dialog',
   templateUrl: './create-quote-dialog.component.html',
   styleUrls: ['./create-quote-dialog.component.css']
 })
+
 export class CreateQuoteDialogComponent implements OnInit, OnChanges {
   //https://ng-bootstrap.github.io/#/components/modal/api
-  readonly ALPHANUMERIC_WITH_SPACE_REGEX : string = "^([a-zA-Z0-9]+\\s)*[a-zA-Z0-9]+$";
   @Input()
   isVisible : boolean = false;
 
@@ -26,6 +29,8 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
 
   quoteForm : FormGroup;
   modalRef : NgbModalRef;
+
+  private isFormDirty: boolean;
 
   constructor(private modalService : NgbModal, private formBuilder: FormBuilder) { }
 
@@ -103,12 +108,22 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
 
   private buildForm(){
     this.quoteForm = this.formBuilder.group({
-      quote: ['',[this.inputRequiredValidator()]],
-      author: ['',[this.inputRequiredValidator(),this.regexValidator(this.ALPHANUMERIC_WITH_SPACE_REGEX)]]
+      quote: [INIT_VALUE,[this.inputRequiredValidator()]],
+      author: [INIT_VALUE,[this.inputRequiredValidator(),this.regexValidator(ALPHANUMERIC_WITH_SPACE_REGEX)]]
+    });
+
+    this.isFormDirty = false;
+
+    this.quoteForm.valueChanges.subscribe((value)=>{
+      this.isFormDirty = value.quote !== INIT_VALUE || value.author !== INIT_VALUE;
     });
   }
 
   private closeDialog(){
+    this.closeDialogHelper();
+  }
+
+  private closeDialogHelper(){
     this.modalRef = undefined;
     this.dialogClosed.emit();
   }
