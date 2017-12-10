@@ -10,6 +10,9 @@ export class FormFieldStatusIndicatorComponent implements OnInit {
   @Input()
   formObject: AbstractControl;
 
+  @Input()
+  requirements: string[] = [];
+
   private errors : string[] = [];
   constructor() { }
 

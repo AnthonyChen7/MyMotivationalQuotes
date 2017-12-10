@@ -5,3 +5,14 @@
 .fa-times-circle-o{
     color:red;
 }
+
+ul{
+    margin: 0;
+    padding:0;
+}
+
+li{
+    margin: 0;
+    padding:0;
+    text-align:left;
+}

@@ -1,3 +1,13 @@
+<i  
+    *ngIf="!formObject?.dirty"
+    class="fa fa-info-circle" 
+    aria-hidden="true"
+    aria-hidden="true"
+    placement="right"
+    container="body"
+    [tooltip]="toolTipRequirements">
+</i>
+
 <i
     *ngIf="formObject?.valid && formObject?.dirty"
     class="fa fa-check-circle" 
@@ -8,11 +18,18 @@
     class="fa fa-times-circle-o" 
     aria-hidden="true"
     placement="right"
-    [tooltip]="toolTip">
+    container="body"
+    [tooltip]="toolTipError">
 </i>
 
-<ng-template #toolTip>
-    <div *ngFor="let error of errors">
-        <span>{{error}}</span>
-    </div>
+<ng-template #toolTipError>
+    <ul>
+        <li *ngFor="let error of errors">{{error}}</li>
+    </ul>
+</ng-template>
+
+<ng-template #toolTipRequirements>
+    <ul>
+        <li *ngFor="let requirement of requirements">{{requirement}}</li>
+    </ul>
 </ng-template>

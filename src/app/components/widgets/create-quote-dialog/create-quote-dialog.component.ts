@@ -32,6 +32,8 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
 
   private isFormDirty: boolean;
 
+  private requirements:string[] = ["This field is required"];
+
   constructor(private modalService : NgbModal, private formBuilder: FormBuilder) { }
 
   ngOnInit() {

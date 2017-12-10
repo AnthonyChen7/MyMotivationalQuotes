@@ -10,12 +10,18 @@
   <div class="modal-body" [formGroup]="quoteForm">
       <label>Author</label>
       <input type="text" formControlName="author" maxlength="20">
-      <form-field-status-indicator [formObject]="quoteForm?.controls?.author"></form-field-status-indicator>
+      <form-field-status-indicator 
+        [formObject]="quoteForm?.controls?.author"
+        [requirements]="requirements">
+      </form-field-status-indicator>
       
 
       <label>Quote</label>
       <textarea formControlName="quote" maxlength="200"></textarea>
-      <form-field-status-indicator [formObject]="quoteForm?.controls?.quote"></form-field-status-indicator>
+      <form-field-status-indicator 
+        [formObject]="quoteForm?.controls?.quote"
+        [requirements]="requirements">
+      </form-field-status-indicator>
       
   </div>
 
