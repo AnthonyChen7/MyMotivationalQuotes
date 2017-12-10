@@ -1,1 +1,16 @@
-<i class="fa fa-check-circle" aria-hidden="true"></i>
+<i
+    *ngIf="formObject?.valid && formObject?.dirty"
+    class="fa fa-check-circle" 
+    aria-hidden="true">
+</i>
+<i 
+    *ngIf="formObject?.invalid && formObject?.dirty"
+    class="fa fa-times-circle-o" 
+    aria-hidden="true"
+    placement="right"
+    [tooltip]="toolTip">
+</i>
+
+<ng-template #toolTip>
+    Error!
+</ng-template>

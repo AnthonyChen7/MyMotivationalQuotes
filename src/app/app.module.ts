@@ -16,6 +16,7 @@ import { QuoteEffects } from './states/quote/quote.effects';
 import { firebaseConfig } from '../environments/firebase.config';
 import { AlertGrowlModule } from './components/widgets/alert-growl/alert-growl.module';
 import { AlertService } from './components/services/alert.service';
+import { TooltipModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AlertService } from './components/services/alert.service';
     ManageQuotesModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AlertGrowlModule
+    AlertGrowlModule,
+    TooltipModule.forRoot()
   ],
   providers: [QuotesService, AlertService],
   bootstrap: [AppComponent],
