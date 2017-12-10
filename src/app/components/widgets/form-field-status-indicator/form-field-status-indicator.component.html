@@ -12,5 +12,7 @@
 </i>
 
 <ng-template #toolTip>
-    Error!
+    <ul *ngFor="let error of errors">
+        <li>{{error}}</li>
+    </ul>
 </ng-template>

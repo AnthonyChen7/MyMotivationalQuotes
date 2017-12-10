@@ -10,14 +10,20 @@ export class FormFieldStatusIndicatorComponent implements OnInit {
   @Input()
   formObject: AbstractControl;
 
+  private errors : string[] = [];
   constructor() { }
 
   ngOnInit() {
     this.formObject.statusChanges.subscribe(
       (status) => {
-        if(this.formObject.invalid && this.formObject.dirty){
-          let errors = this.formObject.errors;
-          console.log(errors);
+        let errors = this.formObject.errors;
+
+        if(errors){
+          this.errors =  [];          
+          for(let key in errors){
+            this.errors.push(errors[key]);
+          }
+          console.log(this.errors);
         }
       }
     );
