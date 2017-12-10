@@ -6,6 +6,11 @@
     color:red;
 }
 
+i{
+    vertical-align: middle;
+}
+
+
 ul{
     margin: 0;
     padding:0;

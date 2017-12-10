@@ -32,7 +32,7 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
 
   private isFormDirty: boolean;
 
-  private requirements:string[] = ["This field is required"];
+  private requirements:string[] = ["This field is required", "Only alphanumeric (with space) is allowed"];
 
   constructor(private modalService : NgbModal, private formBuilder: FormBuilder) { }
 
@@ -110,7 +110,7 @@ export class CreateQuoteDialogComponent implements OnInit, OnChanges {
 
   private buildForm(){
     this.quoteForm = this.formBuilder.group({
-      quote: [INIT_VALUE,[this.inputRequiredValidator()]],
+      quote: [INIT_VALUE,[this.inputRequiredValidator(),this.regexValidator(ALPHANUMERIC_WITH_SPACE_REGEX)]],
       author: [INIT_VALUE,[this.inputRequiredValidator(),this.regexValidator(ALPHANUMERIC_WITH_SPACE_REGEX)]]
     });
 
