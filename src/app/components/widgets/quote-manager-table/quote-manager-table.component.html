@@ -1,4 +1,12 @@
-<p-dataTable [value]="quotes">
+<p-dataTable [value]="quotes" selectionMode="single">
   <p-column field="author" header="Author" [sortable]="true"></p-column>
   <p-column field="quote" header="Quote" [sortable]="true"></p-column>
+  <p-column>
+    <ng-template pTemplate="header">
+        Delete
+    </ng-template>
+    <ng-template let-quote="rowData" pTemplate="body">
+        <i class="fa fa-trash-o" aria-hidden="true" (click)="delete(quote)"></i>
+    </ng-template>
+</p-column>
 </p-dataTable>

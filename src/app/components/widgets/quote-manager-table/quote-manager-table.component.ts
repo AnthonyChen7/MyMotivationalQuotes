@@ -7,13 +7,17 @@ import { Quote } from '../../models/quote';
   styleUrls: ['./quote-manager-table.component.css']
 })
 export class QuoteManagerTableComponent implements OnInit {
-  
+
   @Input()
   quotes: Quote[];
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  delete(quote: Quote){
+    console.log(quote);
   }
 
 }
