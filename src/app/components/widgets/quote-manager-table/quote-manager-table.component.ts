@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Quote } from '../../models/quote';
 
 @Component({
   selector: 'quote-manager-table',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./quote-manager-table.component.css']
 })
 export class QuoteManagerTableComponent implements OnInit {
+  
+  @Input()
+  quotes: Quote[];
 
   constructor() { }
 

@@ -19,12 +19,14 @@ export class ManageQuotesComponent implements OnInit {
 
   quoteOfTheDay$ : Observable<any>;
   showCreateQuoteDialog : boolean = false;
+  quotes$ : Observable<Quote[]>;
   constructor(private store: Store<any>, private alertService : AlertService) {}
 
   ngOnInit() {
     this.store.dispatch(new quote.GetQuoteOfTheDay());
     this.store.dispatch(new quote.GetQuoteList());
     this.quoteOfTheDay$ = this.store.select(fromRoot.getQuoteOfTheDay);
+    this.quotes$ = this.store.select(fromRoot.getQuotes);
 
     this.alertService.getAlert().subscribe(
       (alert : Alert) => {

@@ -21,3 +21,4 @@ export const metaReducers: MetaReducer<any>[] = [debug];
 
 export const getQuoteState = (state: AppState) => state.quote;
 export const getQuoteOfTheDay = createSelector(getQuoteState, (state : quoteReducer.State) => state.quoteOfTheDay);
+export const getQuotes = createSelector(getQuoteState, (state : quoteReducer.State) => state.quotes);

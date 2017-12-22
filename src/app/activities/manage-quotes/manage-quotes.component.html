@@ -9,4 +9,6 @@
     (createQuote)="createQuote($event)">
 </create-quote-dialog>
 
-<quote-manager-table></quote-manager-table>
+<quote-manager-table
+    [quotes]="quotes$ | async">
+</quote-manager-table>
