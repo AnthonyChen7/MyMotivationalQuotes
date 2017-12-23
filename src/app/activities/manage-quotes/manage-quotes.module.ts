@@ -8,9 +8,9 @@ import { QuoteManagerTableModule } from '../../components/widgets/quote-manager-
 @NgModule({
   imports: [
     CommonModule,
-    CreateQuoteDialogModule,
     DisplayQuoteOfTheDayPanelModule,
-    QuoteManagerTableModule
+    QuoteManagerTableModule,
+    CreateQuoteDialogModule
   ],
   exports:[ManageQuotesComponent],
   declarations: [ManageQuotesComponent],

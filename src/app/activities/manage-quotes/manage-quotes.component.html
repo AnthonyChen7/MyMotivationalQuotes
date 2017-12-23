@@ -1,7 +1,6 @@
 <display-quote-of-the-day-panel
     [quote]="quoteOfTheDay$ | async">
 </display-quote-of-the-day-panel>
-<button (click)="temp()">click me </button>
 <button (click)="toggleCreateQuoteDialogVisibility(true)">Create new quote place-holder</button>
 <create-quote-dialog
     [(isVisible)]="showCreateQuoteDialog"

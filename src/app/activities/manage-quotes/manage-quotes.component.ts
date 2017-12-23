@@ -39,10 +39,6 @@ export class ManageQuotesComponent implements OnInit {
     );
   }
 
-  temp(){
-    this.store.dispatch(new quote.GetQuoteList());
-  }
-
   createQuote(event : Quote){
     this.store.dispatch(new quote.CreateQuote(event));
   }
