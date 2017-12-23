@@ -1,13 +1,14 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuoteManagerTableComponent } from './quote-manager-table.component';
-import { DataTableModule, SharedModule } from 'primeng/primeng';
+import { DataTableModule, SharedModule, CheckboxModule } from 'primeng/primeng';
 
 @NgModule({
   imports: [
     CommonModule,
     DataTableModule,
-    SharedModule
+    SharedModule,
+    CheckboxModule
   ],
   declarations: [QuoteManagerTableComponent],
   exports:[QuoteManagerTableComponent],
