@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Quote } from '../../models/quote';
 
 @Component({
@@ -11,13 +11,20 @@ export class QuoteManagerTableComponent implements OnInit {
   @Input()
   quotes: Quote[];
 
+  @Output()
+  addQuoteButtonClicked = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  delete(quote: Quote){
+  deleteQuote(quote: Quote){
     console.log(quote);
+  }
+
+  addQuote(){
+    this.addQuoteButtonClicked.emit();
   }
 
 }

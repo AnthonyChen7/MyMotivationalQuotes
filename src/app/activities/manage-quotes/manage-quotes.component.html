@@ -1,7 +1,7 @@
 <display-quote-of-the-day-panel
     [quote]="quoteOfTheDay$ | async">
 </display-quote-of-the-day-panel>
-<button (click)="toggleCreateQuoteDialogVisibility(true)">Create new quote place-holder</button>
+
 <create-quote-dialog
     [(isVisible)]="showCreateQuoteDialog"
     (dialogClosed)="toggleCreateQuoteDialogVisibility(false)"
@@ -9,5 +9,6 @@
 </create-quote-dialog>
 
 <quote-manager-table
-    [quotes]="quotes$ | async">
+    [quotes]="quotes$ | async"
+    (addQuoteButtonClicked)="toggleCreateQuoteDialogVisibility(true)">
 </quote-manager-table>

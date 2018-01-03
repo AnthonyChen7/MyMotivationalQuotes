@@ -1,5 +1,5 @@
 <p-dataTable [value]="quotes" selectionMode="single">
-  <p-header><button>Add New Quote</button></p-header>
+  <p-header><button (click)="addQuote()">Add New Quote</button></p-header>
   <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
   <p-column field="author" header="Author" [sortable]="true"></p-column>
   <p-column field="quote" header="Quote" [sortable]="true"></p-column>
@@ -8,7 +8,7 @@
         Delete
     </ng-template>
     <ng-template let-quote="rowData" pTemplate="body">
-        <i class="fa fa-trash-o" aria-hidden="true" (click)="delete(quote)"></i>
+        <i class="fa fa-trash-o" aria-hidden="true" (click)="deleteQuote(quote)"></i>
     </ng-template>
 </p-column>
 </p-dataTable>
