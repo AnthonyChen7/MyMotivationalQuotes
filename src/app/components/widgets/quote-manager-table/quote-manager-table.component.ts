@@ -14,13 +14,16 @@ export class QuoteManagerTableComponent implements OnInit {
   @Output()
   addQuoteButtonClicked = new EventEmitter();
 
+  @Output()
+  deleteQuoteButtonClicked = new EventEmitter<Quote>();
+
   constructor() { }
 
   ngOnInit() {
   }
 
   deleteQuote(quote: Quote){
-    console.log(quote);
+    this.deleteQuoteButtonClicked.emit(quote);
   }
 
   addQuote(){

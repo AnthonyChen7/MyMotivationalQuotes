@@ -1,4 +1,4 @@
-<p-dataTable [value]="quotes" selectionMode="single">
+<p-dataTable [value]="quotes" [rows]="8" [paginator]="true" [pageLinks]="5" selectionMode="single" [style]="{'padding':'1em'}">
   <p-header><button (click)="addQuote()" class="btn btn-primary" style="cursor: pointer;">Add New Quote</button></p-header>
   <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
   <p-column field="author" header="Author" [sortable]="true"></p-column>
@@ -12,5 +12,3 @@
     </ng-template>
 </p-column>
 </p-dataTable>
-
-<!-- TODO add pagination -->
