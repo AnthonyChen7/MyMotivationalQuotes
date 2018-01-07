@@ -3,10 +3,7 @@
   <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
   <p-column field="author" header="Author" [sortable]="true"></p-column>
   <p-column field="quote" header="Quote" [sortable]="true"></p-column>
-  <p-column>
-    <ng-template pTemplate="header">
-        Delete
-    </ng-template>
+  <p-column [style]="{'width':'38px'}">
     <ng-template let-quote="rowData" pTemplate="body">
         <i class="fa fa-trash-o" aria-hidden="true" (click)="deleteQuote(quote)"></i>
     </ng-template>
