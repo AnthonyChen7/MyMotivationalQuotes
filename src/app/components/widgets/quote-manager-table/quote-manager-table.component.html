@@ -1,5 +1,5 @@
 <p-dataTable [value]="quotes" selectionMode="single">
-  <p-header><button (click)="addQuote()">Add New Quote</button></p-header>
+  <p-header><button (click)="addQuote()" class="btn btn-primary" style="cursor: pointer;">Add New Quote</button></p-header>
   <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
   <p-column field="author" header="Author" [sortable]="true"></p-column>
   <p-column field="quote" header="Quote" [sortable]="true"></p-column>
