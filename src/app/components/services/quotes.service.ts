@@ -48,7 +48,12 @@ export class QuotesService {
 
   deleteQuote(quoteKey: string){
     let fireBaseKey = this.firebaseQuoteMap[quoteKey];
-    return this.quotesRef.remove(fireBaseKey);
+    if(fireBaseKey){
+      return this.quotesRef.remove(fireBaseKey);
+    }
+    else{
+      return Promise.reject(new Error('Selected quote to delete does not exist'));
+    }
   }
 
   getQuoteOfTheDay() {

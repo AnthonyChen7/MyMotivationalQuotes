@@ -96,5 +96,23 @@ export class QuoteEffects {
         );
       }
     );
-  }); 
+  });
+  
+  @Effect()
+  deleteQuote$: Observable<Action> =
+  this.actions.ofType(quoteActions.QuoteActionTypes.DELETE_QUOTE)
+  .map(toPayload)
+  .switchMap((payload) => {
+    return Observable.create(
+      (observer: Observer<Action>) => {
+        this.quoteService.deleteQuote(payload)
+        .then((success) => {
+          observer.next(new quoteActions.StatusMessage(new Alert("Quote successfully deleted",AlertType.Success, quoteActions.QuoteActionTypes.DELETE_QUOTE)));
+        })
+        .catch((error) => {
+          observer.next(new quoteActions.StatusMessage(new Alert("Quote not successfully deleted",AlertType.Error, quoteActions.QuoteActionTypes.DELETE_QUOTE)));
+        })
+      }
+    );
+  });
 }

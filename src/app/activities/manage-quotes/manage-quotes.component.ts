@@ -48,6 +48,6 @@ export class ManageQuotesComponent implements OnInit {
   }
 
   deleteQuote(quoteKey: string){
-    
+    this.store.dispatch(new quote.DeleteQuote(quoteKey));
   }
 }
