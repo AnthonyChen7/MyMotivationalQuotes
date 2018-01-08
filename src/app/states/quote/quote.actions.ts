@@ -10,7 +10,8 @@ export const QuoteActionTypes = {
     CREATE_QUOTE: QUOTE+"Creating new quote",
     STATUS_MESSAGE: QUOTE+"Status Message",
     GET_QUOTE_LIST: QUOTE+"Getting list of quotes",
-    GET_QUOTE_LIST_COMPLETE: QUOTE+"Getting list of quotes complete"
+    GET_QUOTE_LIST_COMPLETE: QUOTE+"Getting list of quotes complete",
+    DELETE_QUOTE: QUOTE+"Delete Quote"
 };
 
 export class GetQuoteOfTheDay implements CustomAction{
@@ -58,4 +59,14 @@ export class StatusMessage implements CustomAction{
     }
 }
 
-export type QuoteActions = GetQuoteOfTheDay | GetQuoteOfTheDayComplete | CreateQuote | StatusMessage | GetQuoteList | GetQuoteListComplete;
+export class DeleteQuote implements CustomAction{
+    type :string = QuoteActionTypes.DELETE_QUOTE;
+    payload : string;
+
+    constructor(payload : string){
+        this.payload = payload;
+    } 
+}
+
+export type QuoteActions = DeleteQuote | GetQuoteOfTheDay | GetQuoteOfTheDayComplete 
+                           | CreateQuote | StatusMessage | GetQuoteList | GetQuoteListComplete;

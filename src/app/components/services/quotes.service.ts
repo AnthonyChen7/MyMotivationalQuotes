@@ -5,13 +5,28 @@ import 'rxjs/add/operator/toPromise';
 import { Quote } from "../models/quote";
 import { AngularFireDatabase, AngularFireList, AngularFireAction } from "angularfire2/database";
 import { UserCreatedQuote } from "../models/user-created-quote";
+import { JsonConvert } from "json2typescript";
 
 @Injectable()
 export class QuotesService {
   //https://www.concretepage.com/angular-2/angular-2-http-post-example
   private quotesRef : AngularFireList<Quote>;
+
+  private firebaseQuoteMap : Object;
+
+  private jsonConverter: JsonConvert;
+
   constructor(private httpService: Http, private angularFireDatabase : AngularFireDatabase) {
+    this.jsonConverter = new JsonConvert();
     this.quotesRef = this.angularFireDatabase.list('quotes');
+
+    this.quotesRef.snapshotChanges().subscribe( (element) => {
+      this.firebaseQuoteMap = new Object();
+      element.map(temp => {
+        let tempQuote : UserCreatedQuote = this.jsonConverter.deserialize(temp.payload.val(), UserCreatedQuote);
+        this.firebaseQuoteMap[tempQuote.getKey()] = temp.payload.key;
+      });
+    });
   }
 
   createQuote(quote: UserCreatedQuote) {
@@ -29,6 +44,11 @@ export class QuotesService {
     // use take(1) so that it kills the subscription once first value is emitted
     return this.angularFireDatabase.list('quotes', ref => quoteKey?
                  ref.orderByChild('key').equalTo(quoteKey) : ref).valueChanges().take(1);
+  }
+
+  deleteQuote(quoteKey: string){
+    let fireBaseKey = this.firebaseQuoteMap[quoteKey];
+    return this.quotesRef.remove(fireBaseKey);
   }
 
   getQuoteOfTheDay() {

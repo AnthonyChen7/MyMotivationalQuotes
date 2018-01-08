@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Quote } from '../../models/quote';
+import { UserCreatedQuote } from '../../models/user-created-quote';
 
 @Component({
   selector: 'quote-manager-table',
@@ -15,15 +16,15 @@ export class QuoteManagerTableComponent implements OnInit {
   addQuoteButtonClicked = new EventEmitter();
 
   @Output()
-  deleteQuoteButtonClicked = new EventEmitter<Quote>();
+  deleteQuoteButtonClicked = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  deleteQuote(quote: Quote){
-    this.deleteQuoteButtonClicked.emit(quote);
+  deleteQuote(quote: UserCreatedQuote){
+    this.deleteQuoteButtonClicked.emit(quote.getKey());
   }
 
   addQuote(){

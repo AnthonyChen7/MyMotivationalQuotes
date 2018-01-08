@@ -10,5 +10,6 @@
 
 <quote-manager-table
     [quotes]="quotes$ | async"
-    (addQuoteButtonClicked)="toggleCreateQuoteDialogVisibility(true)">
+    (addQuoteButtonClicked)="toggleCreateQuoteDialogVisibility(true)"
+    (deleteQuoteButtonClicked)="deleteQuote($event)">
 </quote-manager-table>

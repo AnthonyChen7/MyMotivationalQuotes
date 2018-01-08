@@ -46,4 +46,8 @@ export class ManageQuotesComponent implements OnInit {
   toggleCreateQuoteDialogVisibility(isVisibile : boolean){
     this.showCreateQuoteDialog = isVisibile;
   }
+
+  deleteQuote(quoteKey: string){
+    
+  }
 }
